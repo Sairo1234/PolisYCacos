@@ -14,7 +14,7 @@ public class Controller : MonoBehaviour
     public Button playAgainButton;
 
     //Otras variables
-    Tile[] tiles = new Tile[Constants.NumTiles];
+    public Tile[] tiles = new Tile[Constants.NumTiles];
     private int roundCount = 0;
     private int state;
     private int clickedTile = -1;
@@ -49,13 +49,33 @@ public class Controller : MonoBehaviour
     public void InitAdjacencyLists()
     {
         //Matriz de adyacencia
-        int[,] matriu = new int[Constants.NumTiles, Constants.NumTiles];
-
+        int[,] matriu = new int[Constants.TilesPerRow, Constants.TilesPerRow];
+        
         //TODO: Inicializar matriz a 0's
-
+        for(int i=0; i< Constants.TilesPerRow; i++)
+        {
+            for(int j=1; j<= Constants.TilesPerRow; j++)
+            {
+                matriu[i, j] = 0;
+                
+            }
+        }
+        Debug.Log(matriu.Length);
         //TODO: Para cada posición, rellenar con 1's las casillas adyacentes (arriba, abajo, izquierda y derecha)
-
+        /*for (int i = 0; i <= 63; i++)
+        {
+            int[,] matriuAD = new int[Constants.TilesPerRow, Constants.TilesPerRow];
+            matriuAD = matriu;
+        }
         //TODO: Rellenar la lista "adjacency" de cada casilla con los índices de sus casillas adyacentes
+        for (int i = 0; i <= 63; i++)
+        {
+            tiles[i].adjacency.Add(i - 1);
+            tiles[i].adjacency.Add(i + 1);
+            tiles[i].adjacency.Add(i - 8);
+            tiles[i].adjacency.Add(i + 8);
+            
+        }*/
 
     }
 
