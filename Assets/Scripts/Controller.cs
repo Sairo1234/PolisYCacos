@@ -232,9 +232,13 @@ public class Controller : MonoBehaviour
         int indexcurrentTile;
 
         if (cop == true)
+        {
             indexcurrentTile = cops[clickedCop].GetComponent<CopMove>().currentTile;
+        }
         else
+        {
             indexcurrentTile = robber.GetComponent<RobberMove>().currentTile;
+        }
 
         //La ponemos rosa porque acabamos de hacer un reset
         tiles[indexcurrentTile].current = true;
@@ -246,10 +250,19 @@ public class Controller : MonoBehaviour
         //Tendrás que cambiar este código por el BFS
         for (int i = 0; i < Constants.NumTiles; i++)
         {
-            tiles[i].selectable = true;
+            tiles[i].selectable = false;
+
         }
 
-
+        foreach (int i in tiles[indexcurrentTile].adjacency)
+        {
+            tiles[i].selectable = true;
+            
+            foreach(int j in tiles[i].adjacency)
+            {
+                tiles[j].selectable = true;
+            }
+        }
     }
 
 
