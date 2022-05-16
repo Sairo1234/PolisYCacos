@@ -185,7 +185,51 @@ public class Controller : MonoBehaviour
         - Movemos al caco a esa casilla
         - Actualizamos la variable currentTile del caco a la nueva casilla
         */
-        robber.GetComponent<RobberMove>().MoveToTile(tiles[robber.GetComponent<RobberMove>().currentTile]);
+        robber.GetComponent<RobberMove>().MoveToTile(tiles[robber.GetComponent<RobberMove>().currentTile - 1]);
+        robber.GetComponent<RobberMove>().currentTile -= 1;
+
+        
+        double[] distmedia = new double[64];
+        double dist1 = 0;
+        double dist2 = 0;
+        int auxX = 0;
+        int auxY = 0;
+        int auxXCop1 = tiles[cops[0].GetComponent<RobberMove>().currentTile].numTile/8;
+        int auxYCop1 = tiles[cops[0].GetComponent<RobberMove>().currentTile].numTile%8;
+        int auxXCop2 = tiles[cops[1].GetComponent<RobberMove>().currentTile].numTile/8;
+        int auxYCop2 = tiles[cops[1].GetComponent<RobberMove>().currentTile].numTile%8;
+
+        int indice = 0;
+        double max = 0;
+
+       /* for (int i =0; i < distmedia.Length; i++)
+        {
+            distmedia[i] = 0;
+        }
+        foreach (int i in tiles[robber.GetComponent<RobberMove>().currentTile].adjacency)
+        {
+            
+            auxX = i / 8;
+            auxY = i % 8;
+            dist1 = Mathf.Sqrt(Mathf.Pow(auxXCop1 - auxX, 2)+ Mathf.Pow(auxYCop1 - auxY, 2));
+            dist2 = Mathf.Sqrt(Mathf.Pow(auxXCop2 - auxX, 2) + Mathf.Pow(auxYCop2 - auxY, 2));
+            distmedia[i] = (dist1 + dist2) / 2;
+            
+        }
+        for(int i=0; i<distmedia.Length; i++)
+        {
+            
+            
+            if (distmedia[i] > max)
+            {
+                max = distmedia[i];
+                indice = i;
+            }
+        }
+
+        robber.GetComponent<RobberMove>().MoveToTile(tiles[indice]);*/
+
+
     }
 
     public void EndGame(bool end)
@@ -257,8 +301,8 @@ public class Controller : MonoBehaviour
         foreach (int i in tiles[indexcurrentTile].adjacency)
         {
             tiles[i].selectable = true;
-            
-            foreach(int j in tiles[i].adjacency)
+
+            foreach (int j in tiles[i].adjacency)
             {
                 tiles[j].selectable = true;
             }
